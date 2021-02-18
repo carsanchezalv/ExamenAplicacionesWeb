@@ -1,0 +1,39 @@
+<%- include('header-loggeado'); -%>
+            <div class="info">
+                <span class="numPreguntas">
+                    <%= contador %> mensajes
+                </span>
+                <span class="todas">
+                    <%= encabezado %>
+                </span>
+            </div>
+            <div class="mensajes">
+                <% if(datos != null) { %>
+                    <% datos.forEach(mens => { %>
+                        <div class="mensaje">
+                            
+                            <div class="usuarioPregunta">
+                                <% let imagen = "/preguntas/imagen/" + mens.id_emisor %> 
+                                <% let number = "/usuarios/perfil/" + mens.num_emisor %>
+                                <a href=<%= number %> ><img class="iconoUsuarioPregunta" src=<%= imagen %>></a>
+                                <div class="nombreUsuarioPregunta">
+                                    <a href=<%= number %>><%= mens.nombre_emisor %></a>
+                                </div>
+                            </div>
+                            <div class="contenidoMensaje">
+                                <%= mens.texto %>                             
+                             </div>
+                            <div class="fechaMensaje">
+                                <p><%= mens.fecha %></p>
+                                <p><%= mens.hora %></p>
+                            </div>
+                            <% let borrar = "/mensajes/borrar/" + mens.id %>
+                            <a class="boton borrarBoton" href=<%=borrar%>>Borrar</a>
+                        </div>
+                    <% }) %>
+                <%}%>
+            
+                <a class="boton" href="/mensajes/enviar">Enviar mensaje</a>
+            </div>
+        </div>
+<%- include('footer'); -%>

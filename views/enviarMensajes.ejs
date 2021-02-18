@@ -1,0 +1,31 @@
+<%- include('header-loggeado'); -%>
+            <div class="info">
+                <span class="todas">
+                    Enviar mensajes
+                </span>
+            </div>
+            <div class="usuarios">
+                <% if(datos != null) { %>
+                    <% datos.forEach(us => { %>
+                        <div class="mensaje">
+                                <div class="usuario2">
+                                    <% let number = "/usuarios/perfil/" + us.num_usuario %>
+                                    <% let imagen = "/preguntas/imagen/" + us.email %>
+                                    <a href=<%= number %>><img class="iconoUsuarioPregunta" src=<%= imagen %>></a>
+                                    <div class="nombreUsuarioPregunta">
+                                        <a href=<%= number %> class="nombre"><%= us.nombre%></a>
+                                    </div>
+                                </div>
+                                <% let act = "/mensajes/enviar/" + us.email %>
+                                <form class="formularioPregunta" method="POST" action=<%=act%>>
+                                    <input name="texto" class="textoTitulo meterTexto texto" type="text" required autocomplete="off" placeholder="Escribe tu mensaje para este usuario"/>
+                                    <button type="submit" class="boton borrarBoton">Enviar</button>
+                                </form>
+                            
+                        </div>
+                    <% }) %>
+                <%}%>
+    
+            </div>
+        </div>
+<%- include('footer'); -%>
